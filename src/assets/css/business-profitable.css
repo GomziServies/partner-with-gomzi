@@ -1,0 +1,178 @@
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.video-btn {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+.custom {
+  text-decoration: none;
+}
+.newthing-1 {
+  background-color: #4e7744;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  font-size: 20px !important;
+  animation: pulseButton 1.8s infinite;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .newthing-1 {
+    height: 60px;
+    width: 60px;
+    font-size: 16px !important;
+  }
+}
+
+.highlight-text {
+  color: #8bc34a;
+  position: relative;
+}
+
+.highlight-text::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #8bc34a;
+}
+
+@media (max-width: 576px) {
+  .highlight-text::after {
+    display: none;
+  }
+}
+
+.underline-mobile {
+  display: inline-block;
+  position: relative;
+}
+
+@media (max-width: 576px) {
+  .underline-mobile::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #8bc34a;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bubble {
+  z-index: 0;
+  animation: float ease-in-out infinite;
+}
+
+.bubble-0 {
+  width: 70px;
+  height: 70px;
+  top: 10%;
+  left: 20%;
+  animation-duration: 5s;
+}
+
+.bubble-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 30%;
+  animation-duration: 6s;
+}
+
+.bubble-2 {
+  width: 90px;
+  height: 90px;
+  top: 30%;
+  left: 40%;
+  animation-duration: 7s;
+}
+.bg-black-green-gradient {
+  background: linear-gradient(135deg, #252525 0%, #273528 60%);
+}
+
+@keyframes pulseButton {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);
+  }
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.contact-button-container {
+  position: fixed;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.contact-now-btn {
+  display: flex;
+  align-items: center;
+  padding: 12px 40px;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #769b4c, #6fa136);
+}
+.contact-now-btn:hover {
+  transform: translateY(-5px);
+}
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+@media (max-width: 576px) {
+  .contact-now-btn {
+    padding: 10px 15px;
+  }
+
+  .phone-number {
+    font-size: 14px;
+  }
+}
