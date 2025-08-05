@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "../assets/css/business-profitable.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WhatsappHeaderApp from "../components/whatsappHeaderBtn";
@@ -7,20 +7,35 @@ import { Helmet } from "react-helmet";
 const BusniessProfitable = () => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [iscontact, setIsContact] = useState(false);
+    const [hasExitedFullscreen, setHasExitedFullscreen] = useState(false);
+
+    const [showEarlyContact, setShowEarlyContact] = useState(false);
+    const [hasShownEarlyContact, setHasShownEarlyContact] = useState(false);
+
     const videoRef = useRef(null);
-    const lastAllowedTime = useRef(0);
     const whatsappRef = useRef(null);
 
     const handlePlayClick = () => {
         const video = videoRef.current;
         if (video) {
-            video.play();
-            setIsPlaying(true);
+            video.controls = true;
+            video.play()
+                .then(() => {
+                    setIsPlaying(true);
+                })
+                .catch((err) => {
+                    console.warn("Autoplay failed:", err);
+                });
         }
     };
 
     const handleEnd = () => {
         setIsContact(true);
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch((err) => {
+                console.warn("Error attempting to exit fullscreen:", err);
+            });
+        }
     };
 
     const handleClick = () => {
@@ -32,7 +47,6 @@ const BusniessProfitable = () => {
 
     return (
         <>
-            {/* Helmet for Meta Title and Description */}
             <Helmet>
                 <title>How to make your fitness business profitable?</title>
                 <meta
@@ -70,9 +84,36 @@ const BusniessProfitable = () => {
                                     ref={videoRef}
                                     poster="/assets/video/thumbnail.jpg"
                                     className="w-100 h-100 object-fit-cover"
-                                    controls={isPlaying}
-                                    onEnded={handleEnd}
+                                    playsInline
                                     preload="auto"
+                                    onEnded={handleEnd}
+                                    onTimeUpdate={() => {
+                                        const video = videoRef.current;
+
+                                        if (video) {
+
+                                            if (video.currentTime >= 900 && !hasShownEarlyContact && !iscontact) {
+                                                setShowEarlyContact(true);
+                                                setHasShownEarlyContact(true);
+                                            }
+
+
+                                            if (video.currentTime >= 1090 && !iscontact) {
+                                                setIsContact(true);
+
+
+                                                setShowEarlyContact(false);
+                                                setHasShownEarlyContact(false);
+
+                                                if (document.fullscreenElement && !hasExitedFullscreen) {
+                                                    document
+                                                        .exitFullscreen()
+                                                        .then(() => setHasExitedFullscreen(true))
+                                                        .catch((err) => console.warn("Error exiting fullscreen:", err));
+                                                }
+                                            }
+                                        }
+                                    }}
                                 >
                                     <source
                                         src="/assets/video/partner-with-gomzi-2.mp4"
@@ -90,16 +131,28 @@ const BusniessProfitable = () => {
                                         </a>
                                     </div>
                                 )}
+
+                                {showEarlyContact && (
+                                    <div
+                                        className="early-contact-btn"
+                                        onClick={handleClick}
+                                        role="button"
+                                        aria-label="Contact Now"
+                                    >
+                                        <i className="fab fa-whatsapp me-2"></i> Contact Now
+                                    </div>
+                                )}
                             </div>
                         </section>
 
-                        {iscontact && (
-                            <div className="contact-button-container">
-                                <button className="contact-now-btn" onClick={handleClick}>
-                                    <h4 className="m-0">Contact Now</h4>
-                                </button>
-                            </div>
-                        )}
+                        <div
+                            className={`contact-button-container fade-in-contact ${iscontact ? "visible" : ""
+                                }`}
+                        >
+                            <button className="contact-now-btn" onClick={handleClick}>
+                                <i className="fab fa-whatsapp pe-2 fs-3"></i> <h4 className="m-0">Contact Now</h4>
+                            </button>
+                        </div>
                     </div>
                 </section>
 

@@ -14,9 +14,11 @@
   transform: translate(-50%, -50%);
   z-index: 1;
 }
+
 .custom {
   text-decoration: none;
 }
+
 .newthing-1 {
   background-color: #4e7744;
   border-radius: 50%;
@@ -117,6 +119,7 @@
   left: 40%;
   animation-duration: 7s;
 }
+
 .bg-black-green-gradient {
   background: linear-gradient(135deg, #252525 0%, #273528 60%);
 }
@@ -136,27 +139,45 @@
   }
 }
 
+/* Fade-in animation for contact button */
+.fade-in-contact {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.fade-in-contact.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .contact-button-container {
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
 }
 
 .contact-now-btn {
-  display: flex;
-  align-items: center;
-  padding: 12px 40px;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
   color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
+  padding: 10px 25px;
   border: none;
   border-radius: 50px;
-  background: linear-gradient(135deg, #769b4c, #6fa136);
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
+
 .contact-now-btn:hover {
   transform: translateY(-5px);
 }
+
 .contact-text {
   display: flex;
   flex-direction: column;
@@ -171,5 +192,42 @@
 
   .phone-number {
     font-size: 14px;
+  }
+}
+.early-contact-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  z-index: 9999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.early-contact-btn:hover {
+  background: #1ebc59;
+  transform: scale(1.05);
+}
+
+/* Mobile screen adjustments */
+@media (max-width: 576px) {
+  .early-contact-btn {
+    top: 10px;
+    right: 10px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    border-radius: 20px;
+  }
+
+  .early-contact-btn i {
+    font-size: 1rem;
   }
 }
