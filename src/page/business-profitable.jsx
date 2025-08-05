@@ -30,31 +30,6 @@ const BusniessProfitable = () => {
         }
     };
 
-    useEffect(() => {
-        const video = videoRef.current;
-        if (!video) return;
-
-        const preventForwardSeek = () => {
-            if (video.currentTime > lastAllowedTime.current + 0.3) {
-                video.currentTime = lastAllowedTime.current;
-            }
-        };
-
-        const updateLastTime = () => {
-            if (!video.seeking && !video.paused) {
-                lastAllowedTime.current = video.currentTime;
-            }
-        };
-
-        video.addEventListener("timeupdate", updateLastTime);
-        video.addEventListener("seeking", preventForwardSeek);
-
-        return () => {
-            video.removeEventListener("timeupdate", updateLastTime);
-            video.removeEventListener("seeking", preventForwardSeek);
-        };
-    }, []);
-
     return (
         <>
             {/* Helmet for Meta Title and Description */}
