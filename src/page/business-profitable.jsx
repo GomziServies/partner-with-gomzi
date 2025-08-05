@@ -96,7 +96,7 @@ const BusniessProfitable = () => {
                         {iscontact && (
                             <div className="contact-button-container">
                                 <button className="contact-now-btn" onClick={handleClick}>
-                                    <h4>Contact Now</h4>
+                                    <h4 className="m-0">Contact Now</h4>
                                 </button>
                             </div>
                         )}
