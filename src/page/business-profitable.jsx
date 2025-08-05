@@ -21,7 +21,6 @@ const BusniessProfitable = () => {
 
     const handleEnd = () => {
         setIsContact(true);
-        setIsPlaying(false);
     };
 
     const handleClick = () => {
@@ -101,7 +100,7 @@ const BusniessProfitable = () => {
                                     preload="auto"
                                 >
                                     <source
-                                        src="/assets/video/partner-with-gomzi.mp4"
+                                        src="/assets/video/partner-with-gomzi-2.mp4"
                                         type="video/mp4"
                                     />
                                     Your browser does not support the video tag.
