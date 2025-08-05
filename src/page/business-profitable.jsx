@@ -95,7 +95,7 @@ const BusniessProfitable = () => {
                                     ref={videoRef}
                                     poster="/assets/video/thumbnail.jpg"
                                     className="w-100 h-100 object-fit-cover"
-                                    controls
+                                    controls={isPlaying}
                                     onEnded={handleEnd}
                                     preload="auto"
                                 >
