@@ -91,28 +91,36 @@ const BusniessProfitable = () => {
                                         const video = videoRef.current;
 
                                         if (video) {
+                                            const isFullscreen = !!document.fullscreenElement;
 
+                                            // 900 seconds: Show Early Contact
                                             if (video.currentTime >= 900 && !hasShownEarlyContact && !iscontact) {
                                                 setShowEarlyContact(true);
                                                 setHasShownEarlyContact(true);
+
+                                                if (isFullscreen && !hasExitedFullscreen) {
+                                                    document.exitFullscreen()
+                                                        .then(() => setHasExitedFullscreen(true))
+                                                        .catch((err) => console.warn("Error exiting fullscreen:", err));
+                                                }
                                             }
+
+                                            // 1090 seconds: Show Final Contact
 
 
                                             if (video.currentTime >= 1090 && !iscontact) {
                                                 setIsContact(true);
-
-
                                                 setShowEarlyContact(false);
                                                 setHasShownEarlyContact(false);
-
-                                                if (document.fullscreenElement && !hasExitedFullscreen) {
-                                                    document
-                                                        .exitFullscreen()
+                                                console.log(isFullscreen);
+                                                if (isFullscreen) {
+                                                    document.exitFullscreen()
                                                         .then(() => setHasExitedFullscreen(true))
                                                         .catch((err) => console.warn("Error exiting fullscreen:", err));
                                                 }
                                             }
                                         }
+
                                     }}
                                 >
                                     <source
