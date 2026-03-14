@@ -17,6 +17,17 @@
 
 .custom {
   text-decoration: none;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: block;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.custom:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
 }
 
 .newthing-1 {
@@ -142,19 +153,26 @@
 /* Fade-in animation for contact button */
 .fade-in-contact {
   opacity: 0;
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  pointer-events: none;
   transform: translateY(20px);
-  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out,
+    max-height 0.6s ease-in-out, margin-top 0.6s ease-in-out;
 }
 
 .fade-in-contact.visible {
   opacity: 1;
+  max-height: 120px;
+  margin-top: 2rem;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
 .contact-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
 }
 
 .contact-now-btn {
