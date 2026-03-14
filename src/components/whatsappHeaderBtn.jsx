@@ -24,9 +24,9 @@ function WhatsappHeaderApp({ message, number, options }) {
   };
 
   return (
-    <a onClick={handleClick} className="inquiry" aria-label="Fg Group">
+    <button type="button" onClick={handleClick} className="inquiry" aria-label="Fg Group">
       <i className="fab fa-whatsapp"></i>
-    </a>
+    </button>
   );
 }
 

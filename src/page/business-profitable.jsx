@@ -132,11 +132,11 @@ const BusniessProfitable = () => {
 
                                 {!isPlaying && (
                                     <div className="video-btn m-0 p-0" onClick={handlePlayClick}>
-                                        <a className="custom" aria-label="Play Video">
+                                        <button type="button" className="custom" aria-label="Play Video">
                                             <span className="newthing-1 mr-0">
                                                 <i className="fas fa-play fs-3 text-white"></i>
                                             </span>
-                                        </a>
+                                        </button>
                                     </div>
                                 )}
 
